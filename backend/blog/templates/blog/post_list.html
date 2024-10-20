@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Django blog{% endblock %}
+{% block content %}
+
+<h1>My Blog</h1>
+
+{{ posts }}
+
+
+
+{% for post in posts %}
+    <h2>
+        <a href="{% url 'blog:post_detail' post.id %}">
+            {{ post.title }}
+        </a>
+    </h2>
+    <p class='date'>
+        Опубликовано {{ post.published_date }} автор {{ post.author }}
+    </p>
+    {{ post.text|truncatewords:30|linebreaks }}
+
+{% endfor %}
+
+
+
+{% endblock %}
