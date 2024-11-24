@@ -1,0 +1,13 @@
+
+
+
+{% for b in books %}
+
+    {{ b.title }} <br>
+    {{ b.author }} <br>
+
+    {% url "book:book_detail" pk=b.pk %}
+
+
+
+{% endfor %}

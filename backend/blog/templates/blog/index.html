@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Тестовая страница
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+    <pre>
+        {{ code }}
+    </pre>
+    <p>Question submitted at: {{ created_at }}</p>
+
+
+    <p>Эксперименты с Django </p>
+    <p>{{ tags|join:'____' }}</p>
+    <p>{{ tags|length }}</p>
+
+    {% if tags|length %}
+        I have one record!
+    {% endif %}
+
+    {% for tag in tags %}
+    <p>This is user {{ tag }}</p>
+    {% endfor %}
+
+{% endblock %}
