@@ -25,6 +25,11 @@
                         Блог
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'list_city_weather' %}active{% endif %}" href="{% url "weather:list_city_weather" %}">
+                        Погода
+                        </a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Книги</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin">Админпанель</a></li>
                 </ul>

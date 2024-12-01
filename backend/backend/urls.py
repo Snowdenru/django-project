@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path("", include("blog.urls", namespace="blog")),
     path("my-book/", include("book.urls", namespace="book")),
+    path("weather/", include("weather.urls", namespace="weather")),
     path("admin/", admin.site.urls),
 ]
 
