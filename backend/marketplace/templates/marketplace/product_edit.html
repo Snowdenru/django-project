@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Django товары{% endblock %}
+{% block content %}
+
+
+<div class="row ">
+    <div class="col">
+        <div class="row">
+
+           <form method = "post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type = "submit" value = "submit">
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
