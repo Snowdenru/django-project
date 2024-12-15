@@ -12,6 +12,30 @@ def product_list(request):
     return render(request, "marketplace/product_list.html", 
                   {"products": products})
 
+def product_comment(request, pk):
+    """
+    Представления для просмотра комментариев товара
+    """
+
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, "marketplace/product_comment.html", 
+                  {"product": product})
+
+
+def product_create(request):
+    """Добавление карточки товара"""
+
+    if request.method =='POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('marketplace:product_list')
+    else:
+        form = ProductForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'marketplace/product_edit.html', context)
 
 
 
@@ -35,3 +59,16 @@ def product_edit(request, pk):
             'form': form
         }
         return render(request, 'marketplace/product_edit.html', context)
+    
+
+
+def product_delete(request, pk):
+    try:
+        old_data = get_object_or_404(Product, pk=pk)
+    except Exception:
+        raise Http404('Такого товара не существует')
+    
+    old_data.delete()
+    return redirect('marketplace:product_list')
+    
+
