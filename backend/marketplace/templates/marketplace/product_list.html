@@ -2,7 +2,15 @@
 
 {% block title %}Django товары{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+
+<a type="button" 
+href="{% url "marketplace:product_create" %}"
+class="btn btn-primary">
+  <i class="bi bi-pencil-square"></i>
+  Создать новый товар
+</a>
 
 <div class="row ">
     <!-- Blog entries-->
@@ -16,13 +24,14 @@
                   <th scope="col">Название товара</th>
                   <th scope="col">Категория</th>
                   <th scope="col">Цена</th>
+                  <th scope="col">Коммент</th>
                   <th scope="col">Возможности</th>
                 </tr>
               </thead>
               <tbody>
                 {% for p in products %}
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{ forloop.counter }}</th>
                     <td>
                     {% if p.status == 1 %}
                       <span class="badge bg-success">
@@ -48,10 +57,23 @@
                     <td>{{ p.price }}</td>
                     <td>
                       <a type="button" 
+                      href="{% url "marketplace:product_comment" pk=p.pk %}"
+                      class="btn btn-primary">
+                        Комментарии
+                      </a>
+                    </td>
+                    <td>
+                      <a type="button" 
                       href="{% url "marketplace:product_edit" pk=p.pk %}"
                       class="btn btn-primary">
                         <i class="bi bi-pencil-square"></i>
                         Редактирование
+                      </a>
+                      <a type="button" 
+                      href="{% url "marketplace:product_delete" pk=p.pk %}"
+                      class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                        Удаление
                       </a>
                     </td>
                   </tr>

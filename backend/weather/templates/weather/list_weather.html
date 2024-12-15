@@ -4,8 +4,23 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
  
+<div class="row ">
+    <div class="col">
+        <div class="row">
+
+           <form method = "post" action="{% url "weather:сity_create" %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type = "submit" value = "submit">
+            </form>
+            
+        </div>
+    </div>
+</div>
+
 <section class="section">
     <div class="container">
         <div class="columns">
@@ -26,6 +41,11 @@
                 <span class="subtitle">{{ weather.temperature }}° C</span>
                 <br> {{ weather.description }}
                 </p>
+
+                <a href='{% url "weather:city_delete" pk=weather.pk %}'>
+                <i class="bi bi-trash"></i>
+                </a>
+                
                 </div>
                 </div>
                 </article>

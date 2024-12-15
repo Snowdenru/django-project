@@ -30,7 +30,17 @@
                         Погода
                         </a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Книги</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'list_book' %}active{% endif %}" href="{% url "book:list_book" %}">
+                        Книги
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}" href="{% url "marketplace:product_list" %}">
+                        Маркетплейс
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Фильмы</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin">Админпанель</a></li>
                 </ul>
             </div>
