@@ -1,0 +1,23 @@
+
+
+<div class="card mb-4">
+    <a href="#!">
+        <img class="card-img-top" 
+        {% if movie.posterUrlPreview %}
+            src='{{ movie.posterUrlPreview }}'
+        {% else %}
+            src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" 
+            alt="..."
+        {% endif %}
+        ></a>
+    <div class="card-body">
+        <div class="small text-muted">{{ movie.premiereRu }}</div>
+        <h2 class="card-title h4">{{ movie.nameRu }}</h2>
+        <p class="card-text">
+            {% for g in movie.genres %}
+                {{ g.genre }};
+            {% endfor %}
+        </p>
+        <a class="btn btn-primary" href="">Подробнее</a>
+    </div>
+</div>

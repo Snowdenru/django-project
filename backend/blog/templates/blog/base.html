@@ -40,7 +40,11 @@
                         Маркетплейс
                         </a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Фильмы</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'premier_movie' %}active{% endif %}" href="{% url "movie:premier_movie" %}">
+                            Фильмы
+                        </a>
+                        </li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin">Админпанель</a></li>
                 </ul>
             </div>

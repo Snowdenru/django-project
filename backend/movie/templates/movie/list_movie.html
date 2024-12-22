@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Django фильмы{% endblock %}
+{% block content %}
+
+
+<div class="row">
+    <!-- Blog entries-->
+    <div class="col">
+        <div class="row">
+            <p style="display:flex;justify-content:space-between;">
+            {% for month in list_of_months %}
+                <a href="?month={{ month }}"> {{ month }}</a>
+            {% endfor %}
+            </p>
+        </div>
+
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-3">
+                <!-- Blog post-->
+                {% include "movie/movie_cart.html" %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
