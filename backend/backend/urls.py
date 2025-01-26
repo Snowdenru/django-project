@@ -25,6 +25,7 @@ urlpatterns = [
     path("weather/", include("weather.urls", namespace="weather")),
     path("marketplace/", include("marketplace.urls", namespace="marketplace")),
     path("movie/", include("movie.urls", namespace="movie")),
+    path("feedback/", include("feedback.urls", namespace="feedback")),
     path("admin/", admin.site.urls),
 ]
 
