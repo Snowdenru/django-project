@@ -8,7 +8,7 @@ def product_list(request):
     Представления для товаров
     """
 
-    products = Product.objects.all()
+    products = Product.objects.select_related('category').all()
     return render(request, "marketplace/product_list.html", 
                   {"products": products})
 
