@@ -19,14 +19,25 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from . import views
+
 urlpatterns = [
-    path("", include("blog.urls", namespace="blog")),
+    path("", views.index),
+    path("blog/", include("blog.urls", namespace="blog")),
     path("my-book/", include("book.urls", namespace="book")),
     path("weather/", include("weather.urls", namespace="weather")),
     path("marketplace/", include("marketplace.urls", namespace="marketplace")),
     path("movie/", include("movie.urls", namespace="movie")),
     path("feedback/", include("feedback.urls", namespace="feedback")),
+    path("todo/", include("todo.urls", namespace="todo")),
     path("admin/", admin.site.urls),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
