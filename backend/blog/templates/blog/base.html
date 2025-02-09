@@ -27,31 +27,56 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'list_city_weather' %}active{% endif %}" href="{% url "weather:list_city_weather" %}">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'list_city_weather' %}active{% endif %}" 
+                        href="{% url "weather:list_city_weather" %}">
                         Погода
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'list_book' %}active{% endif %}" href="{% url "book:list_book" %}">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'list_book' %}active{% endif %}" 
+                        href="{% url "book:list_book" %}">
                         Книги
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'todo_list' %}active{% endif %}" href="{% url "todo:todo_list" %}">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'todo_list' %}active{% endif %}" 
+                        href="{% url "todo:todo_list" %}">
                         To-do
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}" href="{% url "marketplace:product_list" %}">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}" 
+                        href="{% url "marketplace:product_list" %}">
                         Маркетплейс
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'premier_movie' %}active{% endif %}" href="{% url "movie:premier_movie" %}">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'premier_movie' %}active{% endif %}" 
+                        href="{% url "movie:premier_movie" %}">
                             Фильмы
                         </a>
                         </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="/admin">Админпанель</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin">Админпанель</a>
+                    </li>
+                    
+                    <li class="nav-item"> 
+                        {% if user.is_authenticated %}
+                        <a class="nav-link">Hi, {{ user.username }}!</a> 
+                        {% else %}
+                        <a class="nav-link">Hi, Anonymous!</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <a class="nav-link" href="#" onclick="parentNode.submit();">Выход</a>
+                        </form>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
         </div>

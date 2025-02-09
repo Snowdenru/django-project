@@ -18,12 +18,12 @@ def todo_list(request):
     """
     todo = Todo.objects.all().order_by('-create_at')
     return render(request, "marketplace/product_list.html", 
-                  {"todo": todo})
+                  {"todos": todo})
 
 
 def add(request):
-    title = request.POST['title']
-    Todo.objects.create(title=title)
+    title_new = request.POST['title']
+    Todo.objects.create(title=title_new)
     return redirect('todo:todo_list')
 
 def delete(request, todo_id):
