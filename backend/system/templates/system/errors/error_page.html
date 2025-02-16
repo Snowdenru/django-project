@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<div>
+    <img src="/media/system/error/{{status}}.jpg" alt="Описание изображения" width="500">
+</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ error_message }} | <a href="{% url "blog:post_list" %}"><strong>Вернуться на главную</strong></a>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endblock content %}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title> 
+            DFZH
+        </title>
+    </head>
+    <body>
+        <style>
+            body {
+            background-image: url('/media/bg/wallpaper.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            }
+            .title_color{
+                color: rgb(72, 73, 98);
+                font-size: 30px;
+                font-weight: 200;
+            }
+            
+nav {
+  width: 1500px;
+  mask-image: rgb(0, 0, 0);
+  margin: 0px 5px 5px 20px;
+}
+
+nav ul {
+  text-align: center;
+  background:rgba(0, 0, 0, 0.116);
+  border: 2px solid var(--secoColor);
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  padding : 10px;
+  font-family: "Open Sans";
+  text-transform:uppercase;
+  color: rgb(78, 79, 107);
+  font-size: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+nav ul li a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 35, 122, 0.7);
+}
+:root {
+  --secoColor: rgb(78, 79, 107);
+}
+
+details {
+  margin: 0px 0px 0px 10px;
+}
+summary {
+  writing-mode: vertical-lr;
+  text-align: center;
+  padding: 12px 10px;
+  width: 23px;
+  height: 14px;
+  background-color: var(--primColor);
+  border: 2px solid var(--secoColor);
+  color: var(--secoColor);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: transform 200ms ease-in-out 0s;
+}
+summary::before,
+summary::after {
+  position: static;
+  top: 0;
+  left: 0;
+}
+summary::before {
+  content: "";
+}
+summary::after {
+  content: "III";
+  letter-spacing: -1px;
+}
+summary:hover {
+  transform: scale(1.1);
+}
+summary::marker {
+  font-size: 0;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .menu {
+  animation-name: menuAnim;
+}
+details[open] summary::before {
+  content: "X";
+}
+details[open] summary::after {
+  content: "";
+}
+.menu {
+  height: 0;
+  width: fit-content;
+  border-radius: var(--cornerRad);
+  background-color: var(--primColor);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  animation: closeMenu 300ms ease-in-out forwards;
+}
+.menu a {
+  padding: 12px 24px;
+  margin: 0 16px;
+  color: var(--secoColor);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  text-align: center;
+  transition: filter 200ms linear 0s;
+}
+.menu a:nth-of-type(1) {
+  padding-top: 24px;
+}
+.menu a:nth-last-of-type(1) {
+  border-bottom: none;
+}
+.menu a:hover {
+  filter: brightness(200%);
+}
+details::before {
+
+  color: var(--secoColor);
+  position: absolute;
+  margin-left: 80px;
+  padding: 10px 10px;
+  opacity: 0.4;
+}
+details[open]::before {
+  animation: fadeMe 300ms linear forwards;
+}
+@keyframes menuAnim {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 312px;
+  }
+}
+@keyframes fadeMe {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+        </style>
+	<div style="display: flex;"> 
+    <p class="title_color" style="margin: 6px 0px 0px 0px ;">DFZH</p>
+    <nav>
+      
+        <ul style="margin: 0;">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Programm</a>
+          </li>
+          <li>
+            <a href="#">Settings</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <details>
+        <summary></summary>
+        <nav class="menu">
+          <a href="#link">Home</a>
+          <a href="#link">Work</a>
+          <a href="#link">Links</a>
+          <a href="#link">Contact</a>
+          <a href="#link">About</a>
+        </nav>
+      </details>
+    </div>
+<div> 
+  {% block content %}
+  {% endblock %}
+</div>
+    </body>
+</html>
