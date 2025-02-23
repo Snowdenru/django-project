@@ -44,12 +44,14 @@
                         To-do
                         </a>
                     </li>
+                    {% if perm.marketplace.view_product %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}" 
                         href="{% url "marketplace:product_list" %}">
                         Маркетплейс
                         </a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'premier_movie' %}active{% endif %}" 
                         href="{% url "movie:premier_movie" %}">

@@ -2,7 +2,10 @@ from marketplace.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
 from marketplace.forms import ProductForm
 from django.http import Http404
+from django.contrib.auth.decorators import permission_required
 
+
+@permission_required('marketplace.view_product', raise_exception=True)
 def product_list(request):
     """
     Представления для товаров

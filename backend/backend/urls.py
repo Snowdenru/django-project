@@ -21,6 +21,11 @@ from django.conf import settings
 
 from . import views
 
+
+handler403 = 'system.views.handler403'
+handler404 = 'system.views.handler404'
+handler500 = 'system.views.handler500'
+
 urlpatterns = [
     path("", views.index),
     path("accounts/", include("accounts.urls")),
@@ -34,6 +39,7 @@ urlpatterns = [
     path("todo/", include("todo.urls", namespace="todo")),
     path("admin/", admin.site.urls),
 ]
+
 
 if settings.DEBUG:
     import debug_toolbar
