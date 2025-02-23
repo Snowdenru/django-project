@@ -32,7 +32,7 @@ DEEPSEEK_API_KEY = str(os.getenv('DEEPSEEK_API_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1', 'Snowdenru.pythonanywhere.com']
 
 
 # Application definition
