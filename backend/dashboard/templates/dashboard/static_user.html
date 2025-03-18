@@ -1,0 +1,120 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Django товары{% endblock %}
+{% block content %}
+
+
+
+<div class="row ">
+    <div class="col">
+        <div class="row">
+            <div>
+                <canvas id="static_user"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <canvas id="static_user2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('static_user');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        {% comment %} labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], {% endcomment %}
+        labels: [{% for d in data %} "{{d.date}}", {%endfor%}],
+        datasets: [{
+          label: 'Кол-во пользователей в день',
+          {% comment %} data: [12, 19, 3, 5, 2, 3], {% endcomment %}
+          data: [{% for d in data %} {{d.cnt_user}}, {%endfor%}],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+            title: {
+              display: true,
+                text: 'График #1: Посещение пользователей за месяц',
+                  font: {
+                style: 'normal',
+                  lineHeight: 1.2,
+                    size: 18,
+                        },
+            }
+          },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+    const ctx_avg_lvl = document.getElementById('static_user2').getContext('2d');
+    const static_user2 = new Chart(ctx_avg_lvl, {
+      type: 'line',
+      data: {
+        labels: [{% for d.date in data %}"{{ item }}",{% endfor %}],
+    datasets: [{
+      label: "Average user level rating by Bite",
+      data: [{% for d in data %}{{ d.cnt_user }}, {% endfor %}],
+      backgroundColor: 'rgba(227, 83, 53, 0.2)',
+        borderColor: 'rgba(227, 83, 53, 1)',
+          borderWidth: 1
+          }]
+      },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+            text: 'График #2: Посещение пользователей за месяц',
+              font: {
+            style: 'normal',
+              lineHeight: 1.2,
+                size: 18,
+                    },
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+            display: true,
+              title: {
+            display: true,
+              text: 'Кол-во пользователей',
+                font: {
+              style: 'normal',
+                lineHeight: 1.2
+            },
+            padding: { top: 0, left: 0, right: 0, bottom: 5 }
+          }
+        },
+        x: {
+          beginAtZero: true,
+            display: true,
+              title: {
+            display: true,
+              text: '',
+                font: {
+              style: 'normal',
+                lineHeight: 1.2
+            },
+            padding: { top: 5, left: 0, right: 0, bottom: 0 }
+          }
+        }
+      }
+    }
+  });
+</script>
+ 
+{% endblock %}

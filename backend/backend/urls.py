@@ -37,6 +37,7 @@ urlpatterns = [
     path("movie/", include("movie.urls", namespace="movie")),
     path("feedback/", include("feedback.urls", namespace="feedback")),
     path("todo/", include("todo.urls", namespace="todo")),
+    path("dashboard/", include("dashboard.urls", namespace="dashboard")),
     path("admin/", admin.site.urls),
 ]
 

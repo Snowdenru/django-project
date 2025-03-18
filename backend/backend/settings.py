@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'todo',
     'accounts',
     'debug_toolbar',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
