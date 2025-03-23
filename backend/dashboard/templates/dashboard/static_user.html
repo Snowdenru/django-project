@@ -17,6 +17,11 @@
                 <canvas id="static_user2"></canvas>
             </div>
         </div>
+        <div class="row">
+          <div>
+              <canvas id="static_user_post"></canvas>
+          </div>
+      </div>
     </div>
 </div>
 
@@ -115,6 +120,62 @@
       }
     }
   });
+
+
+
+
+  const static_user_post_count = document.getElementById('static_user_post').getContext('2d');
+    const static_user_post_user_chart = new Chart(static_user_post_count, {
+      type: 'bar',
+      data: {
+        labels: [{% for d in data_post %} "{{ d.title }}", {% endfor %}],
+    datasets: [{
+      label: "Кол-во просмотров",
+      data: [{% for d in data_post %}{{ d.get_view_count }}, {% endfor %}],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+
+
+          }]
+      },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+            text: 'График #3: Посещение пользователей за месяц в разрезе постов',
+              font: {
+            style: 'normal',
+              lineHeight: 1.2,
+                size: 18,
+                    },
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  });
 </script>
  
+
+
 {% endblock %}

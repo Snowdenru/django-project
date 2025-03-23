@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from blog.service import get_clien_ip, log_user_post
 from blog.models import Post, Category
 
 
@@ -21,16 +22,24 @@ def post_list(request):
     Представления для получения всех постов
     """
     filter_category = request.GET.get('category')
+    sort = request.GET.get('sort')
     if filter_category:
         posts = Post.objects.filter(published_date__isnull=False, category__name=filter_category)
     else:
         posts = Post.objects.filter(published_date__isnull=False)
+    posts = posts.prefetch_related('viewcount_set')
+
+    if sort == 'author':
+        posts = posts.order_by('author')
+    
+
     category = Category.objects.all()
     return render(request, "blog/post_list.html", {"posts": posts, "category": category})
 
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
+    log_user_post(request, post)
     return render(request, "blog/post_detail.html", {"post": post})
 
 

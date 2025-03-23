@@ -14,7 +14,7 @@
                 <!-- Post title-->
                 <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
                 <!-- Post meta content-->
-                <div class="text-muted fst-italic mb-2">Опубликовано {{ post.published_date }} к {{ post.author }}</div>
+                <div class="text-muted fst-italic mb-2">Опубликовано {{ post.published_date }} к {{ post.author }} <i class="bi bi-eye float-end"> {{ post.get_view_count}}</i></div>
                 <!-- Post categories-->
                 <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ post.category}}</a>
                 {% comment %} <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a> {% endcomment %}
