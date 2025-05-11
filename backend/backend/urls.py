@@ -28,6 +28,7 @@ handler500 = 'system.views.handler500'
 
 urlpatterns = [
     path("", views.index),
+    path("api/", include("api.urls")),
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("blog/", include("blog.urls", namespace="blog")),
