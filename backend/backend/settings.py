@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'debug_toolbar',
+
+    # Наши приложения
+    'api',
     'system',
     'blog',
     'book',
@@ -53,7 +59,6 @@ INSTALLED_APPS = [
     'feedback',
     'todo',
     'accounts',
-    'debug_toolbar',
     'dashboard'
 ]
 
