@@ -32,7 +32,11 @@ DEEPSEEK_API_KEY = str(os.getenv('DEEPSEEK_API_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1', 'Snowdenru.pythonanywhere.com']
+ALLOWED_HOSTS =  [
+    'localhost', 
+    '127.0.0.1', 
+    'Snowdenru.pythonanywhere.com',
+    'host.docker.internal',]
 
 
 # Application definition
@@ -47,6 +51,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'debug_toolbar',
+    'django_prometheus',
 
     # Наши приложения
     'api',
@@ -63,6 +68,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,6 +77,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
+    
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 

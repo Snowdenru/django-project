@@ -40,6 +40,7 @@ urlpatterns = [
     path("todo/", include("todo.urls", namespace="todo")),
     path("dashboard/", include("dashboard.urls", namespace="dashboard")),
     path("admin/", admin.site.urls),
+    path("prometheus/", include("django_prometheus.urls")),
 ]
 
 
